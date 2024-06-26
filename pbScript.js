@@ -1,5 +1,5 @@
 const CONF_ORDER = 1; // 0 or 1 // -< if 0, start @ 2 vol @ 4 pitch -< if 1, start @ 4 pitch @ 2 vol
-const CONF_LINK = 0; 
+const CONF_LINK = 0;
 const CONF_LEAD = -1; // so either perma detach or update only on update, either volume or pitch define which leads
 const setpointDuration = .25;
 // what if we vary one duration rng // -< let's not init
@@ -72,7 +72,6 @@ function nextSpeedIntervalIter(){
 function runner(){
     const songAudio = new Audio(songPath);
     const songDuration = 232;
-    console.log(songDuration);
     let randomForVolVal = setPointsVol[pickAmongFive()];
     let randomForSpeedVal = setPointsSpeed[pickAmongFive()];
 
@@ -92,19 +91,15 @@ function runner(){
 
     function advanceVolume(){
         if (0===0){
-            console.log('advanceV');
             setTimeout(function(){
                 songAudio.volume = randomForVolVal;
-                console.log(songAudio.volume);
                 volIntervalIter += volArr[presVolIntervalIter];
-                
                 advanceVolume();
             }, setpointDuration * volInterval * 1000);
             nextVolIntervalIter();
             redefineSpeedInterval();
             volInterval = presVolInterval;
             randomForVolVal = setPointsVol[pickAmongFive()];
-            
         }
     }
 
@@ -112,9 +107,7 @@ function runner(){
         if (0===0){
             setTimeout(function(){
                 songAudio.playbackRate = randomForSpeedVal;
-                console.log(songAudio.playbackRate);
                 speedIntervalIter += speedArr[presSpeedIntervalIter];
-                
                 advanceSpeed();
             }, setpointDuration * speedInterval * 1000);
             nextSpeedIntervalIter();
